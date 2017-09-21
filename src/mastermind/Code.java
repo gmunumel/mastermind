@@ -18,17 +18,11 @@ public class Code {
 	public Code(Peg peg) {
 		this();
 		assert peg != null;
-		code.addAll(Collections.nCopies(NUM_PEGS, peg));
+		code.add(peg);
 	}
 	
 	public List<Peg> getCode() {
 		return code;
-	}
-	
-	public void setPegInPosition(int index, Color color) {
-		assert index > 0;
-		assert color != null;
-		code.add(index, new Peg(color));
 	}
 	
 	public HashMap<Color, Integer> getBlacksAndWhites(Code other) {
@@ -41,8 +35,8 @@ public class Code {
 			else if (other.contains(code.get(i)))
 				whites++;	
 		}
-		result.put(Color.WHITE, whites);
-		result.put(Color.BLACK, blacks);
+		result.put(Color.BLANCO, whites);
+		result.put(Color.NEGRO, blacks);
 		return result;
 	}
 	
@@ -52,6 +46,14 @@ public class Code {
 			result += peg.toString();
 		}
 		return result;
+	}
+	
+	public Code random() {
+		Code newCode = new Code();
+		for(int i = 0; i < NUM_PEGS; i ++) {
+			newCode.code.add(new Peg().random());
+		}
+		return newCode;
 	}
 	
 	private boolean contains(Peg otherPeg) {

@@ -2,12 +2,15 @@ package mastermind;
 
 import mastermind.utils.IO;
 import mastermind.utils.LimitedColorOption;
+import mastermind.utils.LimitedIntOption;
 
 public class ChooseController {
 	
 	private Round round;
 	
 	private Board board;
+	
+	private Game game;
 	
 	public ChooseController(Round round, Board board) {
 		assert round != null;
@@ -16,32 +19,54 @@ public class ChooseController {
 		this.board = board;
 	}
 	
-	public void pick(String type) {
-		assert type != "";
+	public void pickGame() {
+		LimitedIntOption option = new LimitedIntOption("Opcion? ");
+		game = option.read();
+	}
+	
+	public void pickCodeMaker() {
+		Code newCode = new Code();
+		if (game == Game.PARTIDA)
+			newCode = buildCode("Secreto: ");
+		if (game == Game.DEMO)
+			newCode = demo("Secreto: ");
+		
+		board.setCodeMaker(newCode);
+	}
+	
+	public void pickCodeBreaker() {
 		IO io = new IO();
-		Code newCode;
-		if (type.compareTo("codemaker") == 0) {
-			newCode = buildCode("Introduzca pieza codemaker: ");
-			board.setCodeMaker(newCode);
-		}
-		if (type.compareTo("codebreaker") == 0) {
-			newCode = buildCode("Introduzca pieza codebreaker: ");
-			board.setCodeBreaker(round, newCode);
-			
-			if (board.existsMasterMind())
-				io.writeln("Victoria!!!!!");
-			else
-				round.advance();
-		}
+		Code newCode = new Code();
+		if (game == Game.PARTIDA)
+			newCode = buildCode("Intento? [cuato letras de entre A-amarillo, "
+									+ "R-rojo, V-verde, Z-azul, B-blanco, N-negro] ");
+		if (game == Game.DEMO) 
+			newCode = demo("Intento? [cuato letras de entre A-amarillo, "
+									+ "R-rojo, V-verde, Z-azul, B-blanco, N-negro] ");
+		
+		board.setCodeBreaker(newCode);
+		
+		if (board.existsMasterMind())
+			io.writeln("4 muertos!!!! Victoria");
+		else
+			round.advance();
 	}
 	
 	private Code buildCode(String title) {
 		assert title != "";
-		LimitedColorOption color = new LimitedColorOption(title);
+		LimitedColorOption colors = new LimitedColorOption(title);
 		Code newCode = new Code();
-		for(int i = 0; i < Code.NUM_PEGS; i++) {
-			newCode.setPegInPosition(i, color.read());
+		for(char c : colors.read().toCharArray()) {
+			newCode.getCode().add(new Peg(c));
 		}
+		return newCode;
+	}
+	
+	private Code demo(String title) {
+		IO io = new IO();
+		Code newCode = new Code().random();
+		io.write(title);
+		io.writeln(newCode.toString());
 		return newCode;
 	}
 }

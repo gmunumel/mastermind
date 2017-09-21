@@ -1,14 +1,17 @@
 package mastermind;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 public enum Color {
-	RED('r'),
-	BLUE('b'),
-	GREEN('g'),
-	YELLOW('y'),
-	ORANGE('o'),
-	WHITE('w'),
-	BLACK('k'),
-	NONE('.');
+	AMARILLO('A'),
+	ROJO('R'),
+	VERDE('V'),
+	AZUL('Z'),
+	BLANCO('B'),
+	NEGRO('N');
 	
 	private char value;
 	
@@ -18,11 +21,17 @@ public enum Color {
 	}
 	
 	public static Color getColor(String value) {
-		for(Color color: Color.values()) {
+		for(Color color : Color.values()) {
 			if (color.toString().compareTo(value) == 0)
 				return color;
 		}
-		return Color.NONE;
+		return Color.BLANCO;
+	}
+	
+	public static Color random() {
+		Random rand = new Random();
+		List<Color> colors = Collections.unmodifiableList(Arrays.asList(values()));
+		return colors.get(rand.nextInt(colors.size())) ;
 	}
 	
 	public String toString() {

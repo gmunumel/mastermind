@@ -4,27 +4,17 @@ public class Peg {
 
 	private Color color;
 	
-//	private Position position;
-	
 	public Peg() {
-		color = Color.NONE;
-//		position = Position.NONE;
+		color = Color.BLANCO;
 	}
 	
 	public Peg(Color color) {
-		this();
 		this.color = color;
 	}
 	
-//	public Peg(Position position) {
-//		this();
-//		this.position = position;
-//	}
-//	
-//	public Peg(Color color, Position position) {
-//		this.color = color;
-//		this.position = position;
-//	}
+	public Peg(char c) {
+		this.color = Color.getColor("" + c);
+	}
 	
 	@Override
 	public int hashCode() {
@@ -50,7 +40,11 @@ public class Peg {
 		return true;
 	}
 	
+	public Peg random() {
+		return new Peg(Color.random());
+	}
+	
 	public String toString() {
-		return "" + color.toString(); //+ " || Position: " + position.toString();
+		return "" + color.toString();
 	}
 }

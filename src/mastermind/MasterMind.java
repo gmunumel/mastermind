@@ -15,9 +15,11 @@ public class MasterMind {
 	}
 
 	public void play() {
-		chooseController.pick("codemaker");
+		board.writeOptions();
+		chooseController.pickGame();
+		chooseController.pickCodeMaker();
 		do {
-			chooseController.pick("codebreaker");
+			chooseController.pickCodeBreaker();
 			board.write();
 		} while (!board.existsMasterMind() && !round.complete());
 	}
