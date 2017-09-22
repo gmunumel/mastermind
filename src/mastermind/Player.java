@@ -4,7 +4,7 @@ import mastermind.utils.IO;
 import mastermind.utils.LimitedColorOption;
 import mastermind.utils.LimitedIntOption;
 
-public class ChooseController {
+public class Player {
 	
 	private Round round;
 	
@@ -12,7 +12,7 @@ public class ChooseController {
 	
 	private Game game;
 	
-	public ChooseController(Round round, Board board) {
+	public Player(Round round, Board board) {
 		assert round != null;
 		assert board != null;
 		this.round = round;
@@ -25,27 +25,24 @@ public class ChooseController {
 	}
 	
 	public void pickCodeMaker() {
-		Code newCode = new Code();
-		if (game == Game.PARTIDA)
-			newCode = buildCode("Secreto: ");
-		if (game == Game.DEMO)
-			newCode = demo("Secreto: ");
-		
+		Code newCode = buildRandomCode("Secreto: ", true);	
 		board.setCodeMaker(newCode);
 	}
 	
 	public void pickCodeBreaker() {
-		IO io = new IO();
 		Code newCode = new Code();
 		if (game == Game.PARTIDA)
 			newCode = buildCode("Intento? [cuato letras de entre A-amarillo, "
 									+ "R-rojo, V-verde, Z-azul, B-blanco, N-negro] ");
 		if (game == Game.DEMO) 
-			newCode = demo("Intento? [cuato letras de entre A-amarillo, "
-									+ "R-rojo, V-verde, Z-azul, B-blanco, N-negro] ");
+			newCode = buildRandomCode("Intento? [cuato letras de entre A-amarillo, "
+									+ "R-rojo, V-verde, Z-azul, B-blanco, N-negro] ", false);
 		
 		board.setCodeBreaker(newCode);
-		
+	}
+	
+	public void verifySolution() {
+		IO io = new IO();
 		if (board.existsMasterMind())
 			io.writeln("4 muertos!!!! Victoria");
 		else
@@ -56,17 +53,16 @@ public class ChooseController {
 		assert title != "";
 		LimitedColorOption colors = new LimitedColorOption(title);
 		Code newCode = new Code();
-		for(char c : colors.read().toCharArray()) {
-			newCode.getCode().add(new Peg(c));
-		}
+		newCode.createCode(colors.read());
 		return newCode;
 	}
 	
-	private Code demo(String title) {
+	private Code buildRandomCode(String title, boolean isSecret) {
+		assert title != "";
 		IO io = new IO();
 		Code newCode = new Code().random();
 		io.write(title);
-		io.writeln(newCode.toString());
+		io.writeln(isSecret ? "****" : newCode.toString());
 		return newCode;
 	}
 }

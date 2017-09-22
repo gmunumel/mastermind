@@ -6,20 +6,21 @@ public class MasterMind {
 
 	private Board board;
 
-	private ChooseController chooseController;
+	private Player player;
 
 	public MasterMind() {
 		round = new Round();
 		board = new Board();
-		chooseController = new ChooseController(round, board);
+		player = new Player(round, board);
 	}
 
 	public void play() {
 		board.writeOptions();
-		chooseController.pickGame();
-		chooseController.pickCodeMaker();
+		player.pickGame();
+		player.pickCodeMaker();
 		do {
-			chooseController.pickCodeBreaker();
+			player.pickCodeBreaker();
+			player.verifySolution();
 			board.write();
 		} while (!board.existsMasterMind() && !round.complete());
 	}

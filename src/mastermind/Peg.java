@@ -12,10 +12,6 @@ public class Peg {
 		this.color = color;
 	}
 	
-	public Peg(char c) {
-		this.color = Color.getColor("" + c);
-	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
