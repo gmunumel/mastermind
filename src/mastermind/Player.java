@@ -1,8 +1,8 @@
 package mastermind;
 
 import mastermind.utils.IO;
-import mastermind.utils.LimitedColorOption;
-import mastermind.utils.LimitedIntOption;
+import mastermind.utils.LimitedCodeOption;
+import mastermind.utils.LimitedGameOption;
 
 public class Player {
 	
@@ -20,7 +20,7 @@ public class Player {
 	}
 	
 	public void pickGame() {
-		LimitedIntOption option = new LimitedIntOption("Opcion? ");
+		LimitedGameOption option = new LimitedGameOption("Opcion? ");
 		game = option.read();
 	}
 	
@@ -51,9 +51,8 @@ public class Player {
 	
 	private Code buildCode(String title) {
 		assert title != "";
-		LimitedColorOption colors = new LimitedColorOption(title);
-		Code newCode = new Code();
-		newCode.createCode(colors.read());
+		LimitedCodeOption colors = new LimitedCodeOption(title);
+		Code newCode = new Code(colors.read());
 		return newCode;
 	}
 	
@@ -62,7 +61,7 @@ public class Player {
 		IO io = new IO();
 		Code newCode = new Code().random();
 		io.write(title);
-		io.writeln(isSecret ? "****" : newCode.toString());
+		io.writeln(isSecret ? "****" + newCode.toString() : newCode.toString());
 		return newCode;
 	}
 }

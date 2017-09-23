@@ -2,13 +2,14 @@ package mastermind.utils;
 
 import java.util.Arrays;
 
+import mastermind.Color;
 import mastermind.Game;
 
-public class LimitedIntOption {
+public class LimitedGameOption {
 	
 	private String title;
 	
-	public LimitedIntOption(String title) {
+	public LimitedGameOption(String title) {
 		assert title != "";
 		this.title = title;
 	}
@@ -19,7 +20,7 @@ public class LimitedIntOption {
 		boolean ok;
 		do {
 			value = io.readInt(title);
-			ok = value == 1 || value == 2 ? true : false; 
+			ok = Game.includes(value);
 			if (!ok) {
 				io.writeln("El valor debe ser " + Arrays.asList(Game.values()));
 			}

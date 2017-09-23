@@ -11,12 +11,22 @@ public enum Game {
 		this.value = value;
 	}
 	
-	public static Game getGame(int value) {
+	public static boolean includes(int value) {
+		assert value > 0;
 		for(Game game : Game.values()) {
-			if (game.value == value)
+			if(value == game.value)
+				return true;
+		}
+		return false;
+	}
+	
+	public static Game getGame(int value) {
+		assert value > 0;
+		for(Game game : Game.values()) {
+			if(value == game.value)
 				return game;
 		}
-		return Game.PARTIDA;
+		return Game.DEMO;
 	}
 	
 	public String toString() {

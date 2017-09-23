@@ -20,18 +20,19 @@ public enum Color {
 		this.value = value;
 	}
 	
-	public static Color getColor(String value) {
-		for(Color color : Color.values()) {
-			if (color.toString().compareTo(value) == 0)
-				return color;
-		}
-		return Color.BLANCO;
-	}
-	
 	public static Color random() {
 		Random rand = new Random();
 		List<Color> colors = Collections.unmodifiableList(Arrays.asList(values()));
 		return colors.get(rand.nextInt(colors.size())) ;
+	}
+	
+	public static boolean includes(String value) {
+		assert value != "";
+		for(Color color: Color.values()) {
+			if(!value.contains(color.toString()))
+				return false;
+		}
+		return true;
 	}
 	
 	public String toString() {

@@ -14,10 +14,12 @@ public class Code {
 		code = new ArrayList<Peg>();
 	}
 	
-	public Code(Peg peg) {
+	public Code (String value) {
 		this();
-		assert peg != null;
-		code.add(peg);
+		assert value != "";
+		for(char c : value.toCharArray()) {
+			code.add(new Peg(Color.valueOf("" + c)));
+		}
 	}
 	
 	public HashMap<Color, Integer> getBlacksAndWhites(Code other) {
@@ -32,21 +34,6 @@ public class Code {
 		}
 		result.put(Color.BLANCO, whites);
 		result.put(Color.NEGRO, blacks);
-		return result;
-	}
-	
-	public void createCode(String value) {
-		assert value != "";
-		for(char c : value.toCharArray()) {
-			code.add(new Peg(Color.valueOf("" + c)));
-		}
-	}
-	
-	public String toString() {
-		String result = "";
-		for(Peg peg : code) {
-			result += peg.toString();
-		}
 		return result;
 	}
 	
@@ -65,5 +52,13 @@ public class Code {
 				return true;
 		}
 		return false;
+	}
+	
+	public String toString() {
+		String result = "";
+		for(Peg peg : code) {
+			result += peg.toString();
+		}
+		return result;
 	}
 }

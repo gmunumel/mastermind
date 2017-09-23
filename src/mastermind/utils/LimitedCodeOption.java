@@ -5,11 +5,11 @@ import java.util.Arrays;
 import mastermind.Code;
 import mastermind.Color;
 
-public class LimitedColorOption {
+public class LimitedCodeOption {
 	
 	private String title;
 	
-	public LimitedColorOption(String title) {
+	public LimitedCodeOption(String title) {
 		assert title != "";
 		this.title = title;
 	}
@@ -20,7 +20,7 @@ public class LimitedColorOption {
 		boolean ok;
 		do {
 			value = io.readString(title);
-			ok = this.cointains(value);
+			ok = Color.includes(value);
 			if (!ok) {
 				io.writeln("El valor debe ser un color valido " + Arrays.asList(Color.values()));
 			} else {
@@ -31,14 +31,5 @@ public class LimitedColorOption {
 			}
 		} while (!ok);
 		return value;
-	}
-	
-	private boolean cointains(String value) {
-		assert value != "";
-		for(Color color: Color.values()) {
-			if(value.contains(color.toString()))
-				return true;
-		}
-		return false;
 	}
 }
