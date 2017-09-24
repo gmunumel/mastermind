@@ -1,4 +1,4 @@
-package mastermind;
+package mastermind.models;
 
 public class Round {
 	
@@ -7,7 +7,7 @@ public class Round {
 	private int value;
 	
 	public Round() {
-		value = 0;
+		value = 1;
 	}
 	
 	public int get() {
@@ -20,5 +20,9 @@ public class Round {
 	
 	public boolean complete() {
 		return value == NUM_ROUNDS;
+	}
+	
+	public void clear() {
+		value = 1;
 	}
 }

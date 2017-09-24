@@ -1,17 +1,14 @@
-package mastermind;
+package mastermind.models;
 
 import mastermind.utils.IO;
 
 public class Board {
-	
-//	private Game game;
 	
 	private Code codeMaker;
 	
 	private Code codeBreaker;
 	
 	public Board() {
-//		game = Game.PARTIDA;
 		codeMaker = new Code();
 		codeBreaker = new Code();
 	}
@@ -36,11 +33,6 @@ public class Board {
 		return false;
 	}
 	
-//	public void setGame(Game game) {
-//		assert game != null;
-//		this.game = game;
-//	}
-	
 	public void setCodeMaker(Code codeMaker) {
 		assert codeMaker != null;
 		this.codeMaker = codeMaker;
@@ -54,5 +46,10 @@ public class Board {
 	private int getBlacksOrWhites(Color type) {
 		assert type != null;
 		return codeBreaker.getBlacksAndWhites(codeMaker).get(type);
+	}
+	
+	public void clear() {
+		codeMaker = new Code();
+		codeBreaker = new Code();
 	}
 }

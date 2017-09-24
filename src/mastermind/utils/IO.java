@@ -9,6 +9,7 @@ public class IO {
 			System.in));
 
 	public String readString(String title) {
+		assert title != null;
 		String input = null;
 		boolean ok = false;
 		do {
@@ -24,6 +25,7 @@ public class IO {
 	}
 
 	public int readInt(String title) {
+		assert title != null;
 		int input = 0;
 		boolean ok = false;
 		do {
@@ -38,6 +40,7 @@ public class IO {
 	}
 
 	public char readChar(String title) {
+		assert title != null;
 		char charValue = ' ';
 		boolean ok = false;
 		do {
@@ -57,14 +60,17 @@ public class IO {
 	}
 	
 	public void write(String string) {
+		assert string != null;
 		System.out.print(string);
 	}
 
 	public void writeln(String string) {
+		assert string != null;
 		System.out.println(string);
 	}
 
 	private void writeError(String formato) {
+		assert formato != null;
 		System.out.println("ERROR DE FORMATO! "
 				+ "Introduzca un valor con formato " + formato + ".");
 	}

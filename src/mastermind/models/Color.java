@@ -1,4 +1,4 @@
-package mastermind;
+package mastermind.models;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,11 +26,28 @@ public enum Color {
 		return colors.get(rand.nextInt(colors.size())) ;
 	}
 	
+	public static Color getColor(String value) {
+		assert value != null;
+		for(Color color : Color.values()) {
+			if (color.toString().compareTo(value) == 0) {
+				return color;
+			}
+		}
+		return Color.BLANCO;
+	}
+	
 	public static boolean includes(String value) {
-		assert value != "";
-		for(Color color: Color.values()) {
-			if(!value.contains(color.toString()))
-				return false;
+		assert value != null;
+		boolean isIn = false;
+		for(char c : value.toCharArray()) {
+			isIn = false;
+			for(Color color : Color.values()) {
+		        if (color.toString().compareTo("" + c) == 0) {
+		        		isIn = true;
+		            break;
+		        }
+		    }
+			if (!isIn) return false;
 		}
 		return true;
 	}

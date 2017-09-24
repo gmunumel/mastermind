@@ -1,4 +1,4 @@
-package mastermind;
+package mastermind.models;
 
 public class Peg {
 

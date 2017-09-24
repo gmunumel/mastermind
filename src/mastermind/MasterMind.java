@@ -1,28 +1,32 @@
 package mastermind;
 
+import mastermind.controllers.BaseController;
+import mastermind.controllers.CycleController;
+import mastermind.controllers.Dispatcher;
+
 public class MasterMind {
 	
-	private Round round;
-
-	private Board board;
-
-	private Player player;
+	private Dispatcher dispatcher;
 
 	public MasterMind() {
-		round = new Round();
-		board = new Board();
-		player = new Player(round, board);
+		dispatcher = new Dispatcher();
 	}
 
 	public void play() {
-		board.writeOptions();
-		player.pickGame();
-		player.pickCodeMaker();
+//		board.writeOptions();
+//		choose.pickGame();
+//		choose.pickCodeMaker();
+//		do {
+//			choose.pickCodeBreaker();
+//			board.write();
+//		} while (!board.existsMasterMind() && !round.complete());
+		CycleController cycleController;
 		do {
-			player.pickCodeBreaker();
-			player.verifySolution();
-			board.write();
-		} while (!board.existsMasterMind() && !round.complete());
+			cycleController = dispatcher.getController();
+			if (cycleController != null){
+				cycleController.control();
+			}
+		} while (cycleController != null);
 	}
 
 	public static void main(String[] args) {

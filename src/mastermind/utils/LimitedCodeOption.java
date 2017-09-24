@@ -2,15 +2,15 @@ package mastermind.utils;
 
 import java.util.Arrays;
 
-import mastermind.Code;
-import mastermind.Color;
+import mastermind.models.Code;
+import mastermind.models.Color;
 
 public class LimitedCodeOption {
 	
 	private String title;
 	
 	public LimitedCodeOption(String title) {
-		assert title != "";
+		assert title != null;
 		this.title = title;
 	}
 	

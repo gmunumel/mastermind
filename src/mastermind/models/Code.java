@@ -1,4 +1,4 @@
-package mastermind;
+package mastermind.models;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,9 +16,9 @@ public class Code {
 	
 	public Code (String value) {
 		this();
-		assert value != "";
+		assert value != null;
 		for(char c : value.toCharArray()) {
-			code.add(new Peg(Color.valueOf("" + c)));
+			code.add(new Peg(Color.getColor("" + c)));
 		}
 	}
 	
