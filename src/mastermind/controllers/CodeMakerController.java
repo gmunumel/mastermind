@@ -10,10 +10,9 @@ public class CodeMakerController extends CodeController {
 
 	private Code code;
 	
-	protected CodeMakerController(Game game, String title) {
+	protected CodeMakerController(Game game) {
 		super(game);
-		assert title != null;
-		this.title = title;
+		this.title = "Secreto: ";
 	}
 	
 	@Override
@@ -26,6 +25,6 @@ public class CodeMakerController extends CodeController {
 	
 	@Override
 	public void set() {
-		this.getBoard().setCodeMaker(code);
+		this.setCodeMaker(code);
 	}
 }

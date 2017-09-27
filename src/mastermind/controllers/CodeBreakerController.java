@@ -24,6 +24,6 @@ public class CodeBreakerController extends CodeController {
 	
 	@Override
 	public void set() {
-		this.getBoard().setCodeBreaker(codeBreaker);
+		this.setCodeBreaker(codeBreaker);
 	}
 }

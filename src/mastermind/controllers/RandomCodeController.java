@@ -26,6 +26,6 @@ public class RandomCodeController extends CodeController {
 	
 	@Override
 	public void set() {
-		this.getBoard().setCodeBreaker(code);
+		this.setCodeBreaker(code);
 	}
 }

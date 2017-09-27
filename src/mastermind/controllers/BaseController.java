@@ -1,6 +1,7 @@
 package mastermind.controllers;
 
 import mastermind.models.Board;
+import mastermind.models.Code;
 import mastermind.models.Game;
 import mastermind.models.Mode;
 import mastermind.models.Round;
@@ -46,10 +47,38 @@ public abstract class BaseController {
 	}
 	
 	protected boolean existsMasterMind() {
-		return getBoard().existsMasterMind();
+		return game.getBoard().existsMasterMind();
 	}
 	
 	protected boolean complete() {
-		return getRound().complete();
+		return game.getRound().complete();
+	}
+	
+	protected void advance() {
+		game.getRound().advance();
+	}
+	
+	protected void write() {
+		game.write();
+	}
+	
+	protected void clearRound() {
+		game.getRound().clear();
+	}
+	
+	protected void clearBoard() {
+		game.getBoard().clear();
+	}
+	
+	protected void writeOptions() {
+		game.getBoard().writeOptions();
+	}
+	
+	protected void setCodeBreaker(Code code) {
+		game.getBoard().setCodeBreaker(code);
+	}
+	
+	protected void setCodeMaker(Code code) {
+		game.getBoard().setCodeMaker(code);
 	}
 }

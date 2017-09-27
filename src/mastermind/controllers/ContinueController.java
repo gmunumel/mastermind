@@ -20,8 +20,8 @@ public class ContinueController extends CycleController {
 		} while (answer != 's' && answer != 'S' && answer != 'n'
 				&& answer != 'N');
 		if (answer == 's') {
-			this.getBoard().clear();
-			this.getRound().clear();
+			this.clearBoard();
+			this.clearRound();
 			this.setState(State.INITIAL);
 		} else {
 			this.setState(State.EXIT);

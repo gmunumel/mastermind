@@ -16,7 +16,7 @@ public class StartController extends CycleController {
 	@Override
 	public void control() {
 		assert this.getState() == State.INITIAL;
-		this.getBoard().writeOptions();
+		this.writeOptions();
 		this.setMode(new LimitedModeOption("Opcion? ").read());
 		buildCodeMaker();
 		chooseControllerBuilder.build();
@@ -25,7 +25,7 @@ public class StartController extends CycleController {
 	
 	private void buildCodeMaker() {
 		CodeMakerController codeMaker = 
-				new CodeMakerController(this.getGame(), "Secreto: ");
+				new CodeMakerController(this.getGame());
 		codeMaker.place();
 		codeMaker.set();
 	}

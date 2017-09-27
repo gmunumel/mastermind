@@ -44,6 +44,18 @@ public class Game {
 	}
 	
 	public int getNumPlayers() {
-		return getMode() == Mode.ONEPLAYER ? 1 : 0;
+		return mode == Mode.ONEPLAYER ? 1 : 0;
+	}
+	
+	public void setCodeBreaker(Code code) {
+		board.setCodeBreaker(code);
+	}
+	
+	public void setCodeMaker(Code code) {
+		board.setCodeMaker(code);
+	}
+	
+	public void write() {
+		board.write();
 	}
 }

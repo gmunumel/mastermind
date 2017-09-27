@@ -21,7 +21,7 @@ public class ChooseController extends CycleController {
 				
 		this.codeController.place();
 		this.codeController.set();
-		this.getBoard().write();
+		this.write();
 		
 		IO io = new IO();
 		if (this.existsMasterMind()) {
@@ -30,6 +30,6 @@ public class ChooseController extends CycleController {
 		} else if (this.complete()) {
 			this.setState(State.FINAL);
 		} else
-			this.getRound().advance();
+			this.advance();
 	}
 }
