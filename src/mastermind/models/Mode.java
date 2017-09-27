@@ -1,7 +1,6 @@
 package mastermind.models;
 
 public enum Mode {
-	//NONE(0),
 	ONEPLAYER(1),
 	DEMO(2);
 	

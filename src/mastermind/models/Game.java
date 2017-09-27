@@ -42,4 +42,8 @@ public class Game {
 	public Board getBoard() {
 		return board;
 	}
+	
+	public int getNumPlayers() {
+		return getMode() == Mode.ONEPLAYER ? 1 : 0;
+	}
 }

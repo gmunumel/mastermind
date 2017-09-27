@@ -44,4 +44,12 @@ public abstract class BaseController {
 	protected Game getGame() {
 		return game;
 	}
+	
+	protected boolean existsMasterMind() {
+		return getBoard().existsMasterMind();
+	}
+	
+	protected boolean complete() {
+		return getRound().complete();
+	}
 }

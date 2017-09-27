@@ -1,11 +1,12 @@
 package mastermind.controllers;
 
 import mastermind.models.Game;
-import mastermind.models.Mode;
 
 public class Dispatcher {
 
 	private Game game;
+	
+	private ChooseControllerBuilder chooseControllerBuilder; 
 
 	private StartController startController;
 
@@ -13,7 +14,8 @@ public class Dispatcher {
 
 	public Dispatcher() {
 		game = new Game();
-		startController = new StartController(game);
+		chooseControllerBuilder = new ChooseControllerBuilder(game);
+		startController = new StartController(game, chooseControllerBuilder);
 		continueController = new ContinueController(game);
 	}
 
@@ -22,9 +24,7 @@ public class Dispatcher {
 		case INITIAL:
 			return startController;
 		case IN_GAME:
-			int player = game.getMode() == Mode.ONEPLAYER ? 1 : 0;
-//			int colocate = !game.getBoard().complete()?0:1;
-			return startController.getChooseControllerArray()[player];
+			return chooseControllerBuilder.getChooseController();
 		case FINAL:
 			return continueController;
 		case EXIT:

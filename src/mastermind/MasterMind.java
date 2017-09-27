@@ -1,6 +1,5 @@
 package mastermind;
 
-import mastermind.controllers.BaseController;
 import mastermind.controllers.CycleController;
 import mastermind.controllers.Dispatcher;
 
@@ -13,13 +12,6 @@ public class MasterMind {
 	}
 
 	public void play() {
-//		board.writeOptions();
-//		choose.pickGame();
-//		choose.pickCodeMaker();
-//		do {
-//			choose.pickCodeBreaker();
-//			board.write();
-//		} while (!board.existsMasterMind() && !round.complete());
 		CycleController cycleController;
 		do {
 			cycleController = dispatcher.getController();
