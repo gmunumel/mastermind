@@ -1,75 +1,43 @@
 package mastermind.views;
 
 import mastermind.controllers.ChooseController;
-import mastermind.controllers.CodeBreakerController;
 import mastermind.controllers.ContinueController;
 import mastermind.controllers.CycleController;
-import mastermind.controllers.RandomCodeController;
+import mastermind.controllers.CycleControllerVisitor;
 import mastermind.controllers.StartController;
-import mastermind.models.State;
-import mastermind.utils.LimitedCodeOption;
-import mastermind.utils.LimitedModeOption;
-import mastermind.utils.YesNoOption;
 
-public class MasterMindView {
+public class MasterMindView implements CycleControllerVisitor {
 	
-//	private IO io = new IO();
+	private StartView startView;
 	
-	public void interact(CycleController controller) {
-		assert controller != null;
-		controller.accept(this);
+	private ChooseView chooseView;
+	
+	private ContinueView continueView;
+	
+	public MasterMindView(){
+		startView = new StartView();
+		chooseView = new ChooseView();
+		continueView = new ContinueView();
 	}
 	
-//	public void interact(CycleController controller) {
-//		assert controller != null;
-//		if (controller instanceof StartController) {
-//			this.interact((StartController) controller);
-////		} else if (controller instanceof PutController) {
-////			this.interact((PutController) controller);
-//		} else if (controller instanceof ChooseController) {
-//			this.interact((ChooseController) controller);
-//		} else if (controller instanceof ContinueController) {
-//			this.interact((ContinueController) controller);
-//		}
-//	}
+	public void interact(CycleController cycleController) {
+		assert cycleController != null;
+		cycleController.accept(this);
+	}
 	
-	
+	@Override
 	public void visit(StartController startController) {
-		new BoardView().writeOptions();
-		startController.setModeGame(new LimitedModeOption("Opcion? ").read());
-		startController.processCodeMaker();
-		new CodeMakerView(startController.getCodeMakerController()).write();
-		startController.processStart();
-		//int users = new LimitedIntDialog("Cuántos usuarios?", 0, 2).read();
-		//startController.setUsers(users);
-		//new BoardView(startController).write();
-		
+		startView.interact(startController);
 	}
 	
+	@Override
 	public void visit(ChooseController chooseController) {
-		if (chooseController.getCodeController() instanceof CodeBreakerController) {
-			String title = "Intento? [cuatro letras de entre A-amarillo, "
-							+ "R-rojo, V-verde, Z-azul, B-blanco, N-negro] ";
-			chooseController.setCode(new LimitedCodeOption(title).read());
-		} else {
-			chooseController.setCode("");
-			new RandomCodeView((RandomCodeController) chooseController.getCodeController()).write();
-		}
-		if (!chooseController.existsMasterMindGame())
-			new BoardView().write(chooseController.getBlacksAndWhitesGame());
-		if (chooseController.existsMasterMindGame()) {
-			new BoardView().writeWinner();
-			chooseController.setStateGame(State.FINAL);
-		}else
-			chooseController.processControl();
+		chooseView.interact(chooseController);
 	}
 	
+	@Override
 	public void visit(ContinueController continueController) {
-		continueController.setContinue(new YesNoOption("Desea continuar").read());
+		continueView.interact(continueController);
 	}
-	
-//	private Code getCodeMaker(CodeMakerController codeMakerController) {
-//		return codeMakerController.getCode();
-//	}
 
 }

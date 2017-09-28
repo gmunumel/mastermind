@@ -2,8 +2,6 @@ package mastermind.models;
 
 import java.util.HashMap;
 
-import mastermind.utils.IO;
-
 public class Board {
 	
 	private Code codeMaker;
@@ -14,21 +12,6 @@ public class Board {
 		codeMaker = new Code();
 		codeBreaker = new Code();
 	}
-	
-//	public void writeOptions() {
-//		IO io = new IO();
-//		io.writeln("1. Partida");
-//		io.writeln("2. Demo");
-//	}
-	
-//	public void write() {
-//		IO io = new IO();
-//		if (!existsMasterMind()) {
-//			HashMap<Color, Integer> getBlacksOrWhites = getBlacksAndWhites();
-//			io.writeln(getBlacksOrWhites.get(Color.NEGRO) + " muertos y "
-//				 + getBlacksOrWhites.get(Color.BLANCO) + " heridos");
-//		}
-//	}
 	
 	public boolean existsMasterMind() {
 		if (getBlacksAndWhites().get(Color.NEGRO) == Code.NUM_PEGS) {

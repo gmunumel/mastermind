@@ -54,8 +54,4 @@ public class Game {
 	public void setCodeMaker(Code code) {
 		board.setCodeMaker(code);
 	}
-	
-//	public void write() {
-//		board.write();
-//	}
 }

@@ -3,7 +3,6 @@ package mastermind.controllers;
 import mastermind.models.Game;
 import mastermind.models.Mode;
 import mastermind.models.State;
-import mastermind.views.MasterMindView;
 
 public class StartController extends CycleController {
 
@@ -30,10 +29,6 @@ public class StartController extends CycleController {
 	}
 	
 	public void processStart() {
-		
-		//this.writeOptions();
-		//this.setMode();
-		//buildCodeMaker();
 		chooseControllerBuilder.build();
 		this.setState(State.IN_GAME);
 	}
@@ -43,14 +38,7 @@ public class StartController extends CycleController {
 	}
 	
 	@Override
-	public void accept(MasterMindView marterMindView) {
-		marterMindView.visit(this);		
+	public void accept(CycleControllerVisitor cycleControllerVisitor) {
+		cycleControllerVisitor.visit(this);		
 	}
-	
-//	private void buildCodeMaker() {
-//		CodeMakerController codeMaker = 
-//				new CodeMakerController(this.getGame());
-//		codeMaker.place();
-//		codeMaker.set();
-//	}
 }

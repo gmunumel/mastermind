@@ -61,10 +61,6 @@ public abstract class BaseController {
 		game.getRound().advance();
 	}
 	
-//	protected void write() {
-//		game.write();
-//	}
-	
 	protected void clearRound() {
 		game.getRound().clear();
 	}
@@ -72,10 +68,6 @@ public abstract class BaseController {
 	protected void clearBoard() {
 		game.getBoard().clear();
 	}
-	
-//	protected void writeOptions() {
-//		game.getBoard().writeOptions();
-//	}
 	
 	protected void setCodeBreaker(Code code) {
 		game.getBoard().setCodeBreaker(code);

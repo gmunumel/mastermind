@@ -2,7 +2,6 @@ package mastermind.controllers;
 
 import mastermind.models.Code;
 import mastermind.models.Game;
-import mastermind.utils.IO;
 
 public class CodeMakerController extends CodeController {
 
@@ -18,9 +17,6 @@ public class CodeMakerController extends CodeController {
 	@Override
 	public void define(String value) {
 		code = new Code(value).random();
-//		IO io = new IO();
-//		io.write(title);
-//		io.writeln("****" + code.toString());
 	}
 	
 	@Override

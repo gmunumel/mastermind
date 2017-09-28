@@ -2,7 +2,6 @@ package mastermind.controllers;
 
 import mastermind.models.Code;
 import mastermind.models.Game;
-import mastermind.utils.IO;
 
 public class RandomCodeController extends CodeController {
 
@@ -12,16 +11,13 @@ public class RandomCodeController extends CodeController {
 	
 	protected RandomCodeController(Game game) {
 		super(game);
-		title = "RANDOM Intento? [cuatro letras de entre A-amarillo, "
+		title = "Intento? [cuatro letras de entre A-amarillo, "
 					+ "R-rojo, V-verde, Z-azul, B-blanco, N-negro] ";
 	}
 	
 	@Override
 	public void define(String value) {
 		code = new Code(value).random();
-//		IO io = new IO();
-//		io.write(title);
-//		io.writeln(code.toString());
 	}
 	
 	@Override

@@ -27,7 +27,6 @@ public class Code {
 		HashMap<Color, Integer> result = new HashMap<Color, Integer>();
 		List<String> visitedCodeBreaker = new ArrayList<String>();
 		List<String>  visitedCodeMaker = new ArrayList<String>();
-//		List<Integer> visited = new ArrayList<Integer>();
 		int whites = 0, blacks = 0;
 		for(int i = 0; i < NUM_PEGS; i++) {
 			if (this.code.get(i).equals(other.code.get(i)))
@@ -38,7 +37,6 @@ public class Code {
 			}
 		}
 		for(int i = 0; i < visitedCodeBreaker.size(); i++) {
-//			if (visited.contains(i)) continue;
 			if (visitedCodeMaker.contains(visitedCodeBreaker.get(i)))
 				whites++;
 		}
