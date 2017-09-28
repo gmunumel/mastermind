@@ -3,6 +3,7 @@ package mastermind.controllers;
 import mastermind.models.Game;
 import mastermind.models.Mode;
 import mastermind.models.State;
+import mastermind.views.MasterMindView;
 
 public class StartController extends CycleController {
 
@@ -39,6 +40,11 @@ public class StartController extends CycleController {
 	
 	public CodeMakerController getCodeMakerController() {
 		return codeMakerController;
+	}
+	
+	@Override
+	public void accept(MasterMindView marterMindView) {
+		marterMindView.visit(this);		
 	}
 	
 //	private void buildCodeMaker() {

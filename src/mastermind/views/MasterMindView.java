@@ -17,18 +17,24 @@ public class MasterMindView {
 	
 	public void interact(CycleController controller) {
 		assert controller != null;
-		if (controller instanceof StartController) {
-			this.interact((StartController) controller);
-//		} else if (controller instanceof PutController) {
-//			this.interact((PutController) controller);
-		} else if (controller instanceof ChooseController) {
-			this.interact((ChooseController) controller);
-		} else if (controller instanceof ContinueController) {
-			this.interact((ContinueController) controller);
-		}
+		controller.accept(this);
 	}
 	
-	private void interact(StartController startController) {
+//	public void interact(CycleController controller) {
+//		assert controller != null;
+//		if (controller instanceof StartController) {
+//			this.interact((StartController) controller);
+////		} else if (controller instanceof PutController) {
+////			this.interact((PutController) controller);
+//		} else if (controller instanceof ChooseController) {
+//			this.interact((ChooseController) controller);
+//		} else if (controller instanceof ContinueController) {
+//			this.interact((ContinueController) controller);
+//		}
+//	}
+	
+	
+	public void visit(StartController startController) {
 		new BoardView().writeOptions();
 		startController.setModeGame(new LimitedModeOption("Opcion? ").read());
 		startController.processCodeMaker();
@@ -40,8 +46,7 @@ public class MasterMindView {
 		
 	}
 	
-	private void interact(ChooseController chooseController) {
-		
+	public void visit(ChooseController chooseController) {
 		if (chooseController.getCodeController() instanceof CodeBreakerController) {
 			String title = "Intento? [cuatro letras de entre A-amarillo, "
 							+ "R-rojo, V-verde, Z-azul, B-blanco, N-negro] ";
@@ -59,7 +64,7 @@ public class MasterMindView {
 			chooseController.processControl();
 	}
 	
-	private void interact(ContinueController continueController) {
+	public void visit(ContinueController continueController) {
 		continueController.setContinue(new YesNoOption("Desea continuar").read());
 	}
 	

@@ -7,6 +7,7 @@ import mastermind.models.Game;
 import mastermind.models.Mode;
 import mastermind.models.State;
 import mastermind.utils.IO;
+import mastermind.views.MasterMindView;
 
 public class ChooseController extends CycleController {
 	
@@ -68,5 +69,8 @@ public class ChooseController extends CycleController {
 		return codeController;
 	}
 	
-	
+	@Override
+	public void accept(MasterMindView marterMindView) {
+		marterMindView.visit(this);		
+	}
 }

@@ -2,6 +2,7 @@ package mastermind.controllers;
 
 import mastermind.models.Game;
 import mastermind.models.State;
+import mastermind.views.MasterMindView;
 
 public class ContinueController extends CycleController {
 
@@ -18,5 +19,10 @@ public class ContinueController extends CycleController {
 		} else {
 			this.setState(State.EXIT);
 		}
+	}
+	
+	@Override
+	public void accept(MasterMindView marterMindView) {
+		marterMindView.visit(this);		
 	}
 }
