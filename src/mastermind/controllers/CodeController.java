@@ -8,8 +8,7 @@ public abstract class CodeController extends BaseController {
 		super(game);
 	}
 	
-	public abstract void place();
+	public abstract void define(String value);
 	
 	public abstract void set();
-
 }

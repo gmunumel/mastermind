@@ -1,7 +1,10 @@
 package mastermind.controllers;
 
+import java.util.HashMap;
+
 import mastermind.models.Board;
 import mastermind.models.Code;
+import mastermind.models.Color;
 import mastermind.models.Game;
 import mastermind.models.Mode;
 import mastermind.models.Round;
@@ -58,9 +61,9 @@ public abstract class BaseController {
 		game.getRound().advance();
 	}
 	
-	protected void write() {
-		game.write();
-	}
+//	protected void write() {
+//		game.write();
+//	}
 	
 	protected void clearRound() {
 		game.getRound().clear();
@@ -70,9 +73,9 @@ public abstract class BaseController {
 		game.getBoard().clear();
 	}
 	
-	protected void writeOptions() {
-		game.getBoard().writeOptions();
-	}
+//	protected void writeOptions() {
+//		game.getBoard().writeOptions();
+//	}
 	
 	protected void setCodeBreaker(Code code) {
 		game.getBoard().setCodeBreaker(code);
@@ -80,5 +83,9 @@ public abstract class BaseController {
 	
 	protected void setCodeMaker(Code code) {
 		game.getBoard().setCodeMaker(code);
+	}
+	
+	protected HashMap<Color, Integer> getBlacksAndWhites() {
+		return game.getBoard().getBlacksAndWhites();
 	}
 }

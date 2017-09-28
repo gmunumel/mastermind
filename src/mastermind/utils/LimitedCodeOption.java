@@ -9,9 +9,12 @@ public class LimitedCodeOption {
 	
 	private String title;
 	
+	private LimitedOptionView codeView;
+	
 	public LimitedCodeOption(String title) {
 		assert title != null;
 		this.title = title;
+		codeView = new LimitedOptionView();
 	}
 	
 	public String read(){
@@ -22,11 +25,11 @@ public class LimitedCodeOption {
 			value = io.readString(title);
 			ok = Color.includes(value);
 			if (!ok) {
-				io.writeln("El valor debe ser un color valido " + Arrays.asList(Color.values()));
+				codeView.writeln("El valor debe ser " + Arrays.asList(Color.values()));
 			} else {
 				ok = value.length() == Code.NUM_PEGS ? true : false;
 				if (!ok) {
-					io.writeln("El tamanio debe ser " + Code.NUM_PEGS);
+					codeView.writeln("El tamanio debe ser " + Code.NUM_PEGS);
 				}
 			}
 		} while (!ok);

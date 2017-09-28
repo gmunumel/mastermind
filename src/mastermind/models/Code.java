@@ -25,12 +25,22 @@ public class Code {
 	public HashMap<Color, Integer> getBlacksAndWhites(Code other) {
 		assert other != null;
 		HashMap<Color, Integer> result = new HashMap<Color, Integer>();
+		List<String> visitedCodeBreaker = new ArrayList<String>();
+		List<String>  visitedCodeMaker = new ArrayList<String>();
+//		List<Integer> visited = new ArrayList<Integer>();
 		int whites = 0, blacks = 0;
 		for(int i = 0; i < NUM_PEGS; i++) {
-			if (code.get(i).equals(other.code.get(i)))
+			if (this.code.get(i).equals(other.code.get(i)))
 				blacks++;
-			else if (other.contains(code.get(i)))
-				whites++;	
+			else {
+				visitedCodeBreaker.add(other.code.get(i).toString());	
+				visitedCodeMaker.add(this.code.get(i).toString());
+			}
+		}
+		for(int i = 0; i < visitedCodeBreaker.size(); i++) {
+//			if (visited.contains(i)) continue;
+			if (visitedCodeMaker.contains(visitedCodeBreaker.get(i)))
+				whites++;
 		}
 		result.put(Color.BLANCO, whites);
 		result.put(Color.NEGRO, blacks);
@@ -43,15 +53,6 @@ public class Code {
 			newCode.code.add(new Peg().random());
 		}
 		return newCode;
-	}
-	
-	private boolean contains(Peg otherPeg) {
-		assert otherPeg != null;
-		for(Peg peg : code) {
-			if (peg.equals(otherPeg)) 
-				return true;
-		}
-		return false;
 	}
 	
 	public String toString() {

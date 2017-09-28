@@ -16,15 +16,23 @@ public class CodeMakerController extends CodeController {
 	}
 	
 	@Override
-	public void place() {
-		code = new Code().random();
-		IO io = new IO();
-		io.write(title);
-		io.writeln("****" + code.toString());
+	public void define(String value) {
+		code = new Code(value).random();
+//		IO io = new IO();
+//		io.write(title);
+//		io.writeln("****" + code.toString());
 	}
 	
 	@Override
 	public void set() {
 		this.setCodeMaker(code);
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	
+	public Code getCode() {
+		return code;
 	}
 }

@@ -2,13 +2,17 @@ package mastermind;
 
 import mastermind.controllers.CycleController;
 import mastermind.controllers.Dispatcher;
+import mastermind.views.MasterMindView;
 
 public class MasterMind {
 	
 	private Dispatcher dispatcher;
+	
+	private MasterMindView view;
 
 	public MasterMind() {
 		dispatcher = new Dispatcher();
+		view = new MasterMindView();
 	}
 
 	public void play() {
@@ -16,7 +20,7 @@ public class MasterMind {
 		do {
 			cycleController = dispatcher.getController();
 			if (cycleController != null){
-				cycleController.control();
+				view.interact(cycleController);
 			}
 		} while (cycleController != null);
 	}
