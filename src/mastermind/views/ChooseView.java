@@ -22,7 +22,7 @@ public class ChooseView {
 		if (chooseController.existsMasterMindGame()) {
 			new BoardView().writeWinner();
 			chooseController.setStateGame(State.FINAL);
-		}else
+		} else
 			chooseController.processControl();
 	}
 	

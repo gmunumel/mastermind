@@ -25,20 +25,21 @@ public class Code {
 	public HashMap<Color, Integer> getBlacksAndWhites(Code other) {
 		assert other != null;
 		HashMap<Color, Integer> result = new HashMap<Color, Integer>();
-		List<String> visitedCodeBreaker = new ArrayList<String>();
-		List<String>  visitedCodeMaker = new ArrayList<String>();
-		int whites = 0, blacks = 0;
-		for(int i = 0; i < NUM_PEGS; i++) {
-			if (this.code.get(i).equals(other.code.get(i)))
+		List<String> codeBreaker = getListString(other.toString());
+		List<String> codeMaker = getListString(this.toString());
+		int whites = 0, blacks = 0, matched = -1;
+		for(int i = 0; i < codeBreaker.size(); i++) {
+			if (codeBreaker.get(i).equals(codeMaker.get(i))) {
 				blacks++;
-			else {
-				visitedCodeBreaker.add(other.code.get(i).toString());	
-				visitedCodeMaker.add(this.code.get(i).toString());
-			}
-		}
-		for(int i = 0; i < visitedCodeBreaker.size(); i++) {
-			if (visitedCodeMaker.contains(visitedCodeBreaker.get(i)))
+				codeMaker.set(i, "" + i);
+			}  
+		}   
+		for(int i = 0; i < codeBreaker.size(); i++) {
+			matched = codeMaker.lastIndexOf(codeBreaker.get(i));
+			if (matched != -1) {
 				whites++;
+				codeMaker.set(matched, "" + matched);
+			} 
 		}
 		result.put(Color.BLANCO, whites);
 		result.put(Color.NEGRO, blacks);
@@ -57,6 +58,14 @@ public class Code {
 		String result = "";
 		for(Peg peg : code) {
 			result += peg.toString();
+		}
+		return result;
+	}
+	
+	private List<String> getListString(String value) {
+		List<String> result = new ArrayList<String>();
+		for(char c : value.toCharArray()) {
+			result.add("" + c);
 		}
 		return result;
 	}
