@@ -1,3 +1,7 @@
-MasterMind board game
+MasterMind Juego
 
-Best practices
+Principios de Diseño
+
+Autor: Gabriel Muñumel
+
+URL: [Mi Cuenta GitHub](https://github.com/gmunumel/mastermind)
